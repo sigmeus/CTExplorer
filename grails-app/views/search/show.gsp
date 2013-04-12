@@ -9,7 +9,7 @@
 	      body { height: 100%; margin: 0; padding: 0 }
 	      #map-canvas { height: 400px;}
 	    </style>
-	    <r:require module="bootstrap"/> 
+	    <r:require modules="bootstrap,map"/> 
     </head>
     <body>
         <div class="row-fluid">
@@ -61,7 +61,7 @@
 		           	</div>
 		           	<div class="tab-pane fade in" id="loc">
 				           	<g:each in="${xml.location}">
-				           		<b>${it.facility.address.city}</b>, ${it.contact} (${it.status})<br/>
+				           		<span class="label ${it.status=='Recruiting'?'label-success':''}">${it.status}</span> <b>${it.facility.address.city}, ${it.facility.address.country}</b> - ${it.facility.name} ${it.contact}<br/>
 				           	</g:each>
 			        </div>
 			    </div>
@@ -71,7 +71,7 @@
 			</div>
 			
 			</div>
-			Data provided by <a href="http://clinicaltrials.gov">http://clinicaltrials.gov</a>
+			
         </div>
         <g:javascript>
         $(document).ready(function() {
@@ -84,24 +84,19 @@
 	        }
 	        var map = new google.maps.Map(document.getElementById('map-canvas'),
 	                                      mapOptions);
-			<% int i=0 %>
+	        
+	        var markers = [];
+	        var marker;
 	        <g:each in="${xml.location}">
-	        	window.setTimeout(function(){
-		        	geocoder.geocode( { 'address': "${it.facility.address.city}"}, function(results, status) {
-				      if (status == google.maps.GeocoderStatus.OK) {
-				        var marker = new google.maps.Marker({
+				       	marker = new google.maps.Marker({
 				            map: map,
-				            animation: google.maps.Animation.DROP,
-				            position: results[0].geometry.location,
+				            position: new google.maps.LatLng(${com.vcare.ctexplorer.GeocoderCache.getCache((it.facility.address.city+', '+it.facility.address.country) as String)}),
 				            <g:if test="${it.status=='Recruiting'}">icon:'http://maps.google.com/mapfiles/ms/icons/green-dot.png',</g:if>
-				            title:"${it.facility.address.city}, ${it.contact} (${it.status})"
+				            title:"${it.facility.name}, ${it.contact} ${it.status}"
 				        });
-				      } else {
-				      	console.log(${i});
-				      }
-				    });
-			    },${5000*((i++/5) as int)});
+				        markers.push(marker);
 	        </g:each>
+	        var mc=new MarkerClusterer(map,markers);
      	 });
     </g:javascript>
     </body>

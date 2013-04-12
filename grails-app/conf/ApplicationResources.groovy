@@ -9,4 +9,8 @@ modules = {
 		resource url:'js/jquery-1.9.1.min.js'
 		resource url:'js/bootstrap.min.js'
 	}
+	
+	map {
+		resource url:'js/markerclusterer.js'
+	}
 }

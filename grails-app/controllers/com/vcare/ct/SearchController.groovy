@@ -1,5 +1,6 @@
 package com.vcare.ct
 
+import com.vcare.ctexplorer.GeocoderCache;
 import com.vcare.ctexplorer.XMLCache;
 
 class SearchController {
@@ -7,19 +8,22 @@ class SearchController {
     def index() {
 		println params
 		def q=this.p.curry(params)
-		def url="http://clinicaltrials.gov/ct2/results?displayXML=true${q('term')+q('locn')+q('start')}"
+		def url="http://clinicaltrials.gov/ct2/results?displayXML=true${q('term',null)+q('locn',null)+q('offset','start')}"
 		def output=new XmlSlurper().parseText(getCache(url))
 		[xml:output]
 	}
 	
 	def show(){
-		
 		[xml:new XmlSlurper().parseText(getCache(params.nct.decodeHTML()))]
 	}
 	
-	def p={params, String param ->
+	def geocode(){
+		render GeocoderCache.getCache(params.location)
+	}
+	
+	def p={params, String param, String name ->
 		if(params[param]){
-			"&${param}=${params[param]}"
+			"&${name?:param}=${params[param]}"
 		}
 		else ""
 	}

@@ -8,19 +8,44 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 		<title><g:layoutTitle default="Clinical Trials Reloaded"/></title>
-		<link rel="shortcut icon" href="${resource(dir: 'images', file: 'favicon.ico')}" type="image/x-icon">
-		<link rel="apple-touch-icon" href="${resource(dir: 'images', file: 'apple-touch-icon.png')}">
-		<link rel="apple-touch-icon" sizes="114x114" href="${resource(dir: 'images', file: 'apple-touch-icon-retina.png')}">
 		<g:layoutHead/>
 		<r:layoutResources />
 	</head>
 	<body>
-		<div class="nav"></div>
-		<div class=container>
+		<nav id="menu" class="navbar navbar-fixed-top">
+
+			<div class="navbar-inner">
+
+				<div class="container">
+					<a href="${createLink(uri: '/')}" class="visible-desktop" id="logo_venturacare"></a>
+					<a href="${createLink(uri: '/')}" class="hidden-desktop" id="logo_venturacare_small"></a>
+					<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</a>
+
+					<a class="brand" href="${createLink(uri: '/')}">CTExplorer</a>
+
+					<div class="nav-collapse">
+						<ul class="nav">
+							
+						</ul>
+						<ul class="nav pull-right">
+							<li class="dropdown"><a href="${createLink(uri: '/about')}" ><i class="icon-white icon-question-sign"></i> About</a></li>
+   
+      					</ul>
+					</div>
+				</div>
+			</div>
+		</nav>
+		<div class="container" style="margin-top:55px; margin-bottom:65px;">
 			<g:layoutBody/>
+			<div class="footer">
+				Designed by <a target="_blank" href="http://www.ventura-care.com">VenturaCare</a>, Data provided by <a href="http://clinicaltrials.gov">http://clinicaltrials.gov</a>
+			</div>
 		</div>
-		<div class="footer"></div>
-		<div id="spinner" class="spinner" style="display:none;"><g:message code="spinner.alt" default="Loading&hellip;"/></div>
+		
 		<r:layoutResources />
 	</body>
 </html>

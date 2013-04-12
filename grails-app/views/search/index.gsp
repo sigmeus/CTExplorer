@@ -21,8 +21,8 @@
 	            		</thead>
 		            	<g:each in="${xml.clinical_study}">
 			           		<tr>
-			           			<td><a href="${createLink(action:'show', params:[nct:it.url.toString()+'?displayXML=true'])}">${it.condition_summary}</a>
-			           			<span class="label">${it.status}</span></td>
+			           			<td><span class="label">${it.status}</span></td> <a href="${createLink(action:'show', params:[nct:it.url.toString()+'?displayXML=true'])}">${it.condition_summary}</a>
+			           			
 			           			<td>${it.title}</td>
 			           		</tr>
 			           	</g:each>
