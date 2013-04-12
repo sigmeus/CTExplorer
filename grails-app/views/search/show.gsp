@@ -48,7 +48,7 @@
 		           	<b>Min Age</b> ${xml.eligibility.minimum_age}<br/>
 		           	<b>Max Age</b> ${xml.eligibility.maximum_age}<br/>
 		           	<b>Healthy Volunteers</b> ${xml.eligibility.healthy_volunteers}<br/> <br/>
-		           	${xml.eligibility.criteria.textblock}
+		           	${xml.eligibility.criteria.textblock.text().replaceAll("\n\n","<br/>")}
 		           	<!-- 
 			           	<ul>
 				           	<g:each in="${xml.eligibility.criteria.textblock.toString().split('Inclusion Criteria')*.split('Exclusion Criteria').flatten()}" var="criteria">
