@@ -14,11 +14,17 @@
 						<a href="#search" data-toggle="tab">Search</a>
 					</li>
 					<li><a href="#advanced" data-toggle="tab">Advanced</a></li>
+					<li><a href="#nearme" data-toggle="tab">Near Me</a></li>
 				</ul>
 				<div class="tab-content">
 					<div id="search" class="tab-pane fade in active">
 						<g:form class="form-horizontal offset3" controller="search">
-							<g:textField class="span6" name="term" placeholder="Keyword" />
+							<div class="control-group">
+								<g:textField class="span6" name="term" placeholder="Keyword" />
+							</div>
+							<div class="control-group">
+								<g:submitButton name="Search"/>
+							</div>
 						</g:form>
 					</div>
 					<div id="advanced" class="fade in tab-pane">
@@ -33,6 +39,8 @@
 								<g:submitButton name="Search"/>
 							</div>
 						</g:form>
+					</div>
+					<div id="nearme" class="fade in tab-pane">
 					</div>
 				</div>
 			</div>

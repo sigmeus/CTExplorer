@@ -1,12 +1,14 @@
 package com.vcare.ct
 
 import com.vcare.ctexplorer.GeocoderCache;
+import com.vcare.ctexplorer.KeywordCache;
 import com.vcare.ctexplorer.XMLCache;
 
 class SearchController {
 
     def index() {
 		println params
+		cacheKeyword(params.term)
 		def q=this.p.curry(params)
 		def url="http://clinicaltrials.gov/ct2/results?displayXML=true${q('term',null)+q('locn',null)+q('offset','start')}"
 		def output=new XmlSlurper().parseText(getCache(url))
@@ -41,5 +43,9 @@ class SearchController {
 			cache.save()
 		}
 		cache.cache
+	}
+	
+	def cacheKeyword(String keyword) {
+		KeywordCache keywordCache = new KeywordCache(keyword).save()
 	}
 }
