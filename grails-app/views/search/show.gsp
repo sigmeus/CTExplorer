@@ -90,7 +90,7 @@
 	        <g:each in="${xml.location}">
 				       	marker = new google.maps.Marker({
 				            map: map,
-				            position: new google.maps.LatLng(${com.vcare.ctexplorer.GeocoderCache.getCache((it.facility.address.city+', '+it.facility.address.country) as String)}),
+				            position: new google.maps.LatLng(${com.vcare.ctexplorer.GeocoderCache.getCache((it.facility.address.city+', '+it.facility.address.country) as String, "${params.nct}")}),
 				            <g:if test="${it.status=='Recruiting'}">icon:'http://maps.google.com/mapfiles/ms/icons/green-dot.png',</g:if>
 				            title:"${it.facility.name}, ${it.contact} ${it.status}"
 				        });

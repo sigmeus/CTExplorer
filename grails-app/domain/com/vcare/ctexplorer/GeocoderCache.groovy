@@ -12,7 +12,7 @@ class GeocoderCache {
 	
 	static transients = ["code"]
 	
-	static getCache(String loc){
+	static getCache(String loc, String url){
 		GeocoderCache gc=GeocoderCache.findByLocation(loc)
 		if(!gc){
 			gc=new GeocoderCache()
@@ -23,6 +23,13 @@ class GeocoderCache {
 				gc.save()
 			}
 		}
+		
+		XMLCache xmlCache = XMLCache.findByUrl(url)
+		if (xmlCache) {
+			xmlCache.addToGeocoderCaches(gc)
+			xmlCache.save()
+		}
+		
 		gc.cache
 	}
 }

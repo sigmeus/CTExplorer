@@ -6,6 +6,8 @@ class XMLCache {
 	Date date=new Date()
 	Boolean outdated=false
 	
+	static hasMany = [geocoderCaches: GeocoderCache]
+	
 	static constraints = {
 		url(url:true, nullable:false)
 		cache(size:0..1024*1024*1024, nullable:false)
