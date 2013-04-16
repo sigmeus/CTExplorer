@@ -32,7 +32,7 @@
 							
 						</ul>
 						<ul class="nav pull-right">
-							<li class="dropdown"><a href="${createLink(uri: '/about')}" ><i class="icon-white icon-question-sign"></i> About</a></li>
+							<li class="dropdown"><a href="${createLink(controller: 'about')}" ><i class="icon-white icon-question-sign"></i> About</a></li>
    
       					</ul>
 					</div>
