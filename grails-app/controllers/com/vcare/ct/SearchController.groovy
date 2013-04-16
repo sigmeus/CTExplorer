@@ -10,7 +10,7 @@ class SearchController {
 		println params
 		cacheKeyword(params.term)
 		def q=this.p.curry(params)
-		def url="http://clinicaltrials.gov/ct2/results?displayXML=true${q('term',null)+q('locn',null)+q('offset','start')}"
+		def url="http://clinicaltrials.gov/ct2/results?displayXML=true${q('term',null)+q('locn',null)+q('offset','start')+q('recr',null)}"
 		def output=new XmlSlurper().parseText(getCache(url))
 		[xml:output]
 	}
@@ -25,7 +25,7 @@ class SearchController {
 	
 	def p={params, String param, String name ->
 		if(params[param]){
-			"&${name?:param}=${params[param]}"
+			"&${name?:param}=${params[param].replaceAll(' ', '+')}"
 		}
 		else ""
 	}
