@@ -50,6 +50,23 @@
 						</g:form>
 					</div>
 					<div id="nearme" class="fade in tab-pane">
+						<g:form class="form-horizontal offset3" controller="location" action="search">
+							<div class="control-group">
+								<g:textField class="span6" name="term" placeholder="My location" />
+							</div>
+							<div class="control-group">
+								<g:submitButton name="Search"/>
+							</div>
+						</g:form>
+						<div class="offset3">
+							<h3>Popular locations</h3>
+							<div>
+								<g:render template="/location/list" var="location"
+										collection="${com.vcare.ctexplorer.Location.list(max:10, order:'desc', sort:'numberOfSearches')}">
+								</g:render>
+								[<a href="${createLink(controller: 'location')}">Show all locations</a>]
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>

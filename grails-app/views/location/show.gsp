@@ -2,21 +2,19 @@
 <html>
 	<head>
 		<meta name="layout" content="main" />
-		<title>Keywords</title>
+		<title>${location.term}</title>
 		<r:require module="bootstrap" />
 	</head>
 	<body>
 		<div class="row">
 			<div class="well" style="height: 400px; padding-top: 100px;">
 				<div class="offset3">
-					<h2>All Keywords</h2>
+					<h2>${location.term}</h2>
 					<div>
-						<g:render template="list" var="keyword"
-								collection="${com.vcare.ctexplorer.KeywordCache.list(order:'desc', sort:'numberOfSearches')}">
-						</g:render>
+						
 					</div>
 				</div>
 			</div>
 		</div>
 	</body>
-</html>
+</html
