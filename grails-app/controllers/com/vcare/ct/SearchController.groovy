@@ -46,6 +46,15 @@ class SearchController {
 	}
 	
 	def cacheKeyword(String keyword) {
-		KeywordCache keywordCache = new KeywordCache(keyword).save()
+		KeywordCache kw = KeywordCache.findByTerm(keyword)
+		
+		if (kw) {
+			kw.numberOfSearches++
+		}
+		else  {
+			kw = new KeywordCache(keyword)
+		}
+		
+		kw.save()
 	}
 }

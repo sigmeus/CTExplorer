@@ -3,7 +3,7 @@ package com.vcare.ctexplorer
 class KeywordCache {
 	
 	String term
-	Date searchDate = new Date()
+	long numberOfSearches = 1
 
     static constraints = {
     }

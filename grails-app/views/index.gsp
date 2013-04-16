@@ -26,6 +26,15 @@
 								<g:submitButton name="Search"/>
 							</div>
 						</g:form>
+						<div class="offset3">
+							<h3>Popular keywords</h3>
+							<div>
+								<g:render template="/keywordCache/list" var="keyword"
+										collection="${com.vcare.ctexplorer.KeywordCache.list(max:10, order:'desc', sort:'numberOfSearches')}">
+								</g:render>
+								[<a href="${createLink(controller: 'keywordCache')}">Show all keywords</a>]
+							</div>
+						</div>
 					</div>
 					<div id="advanced" class="fade in tab-pane">
 						<g:form class="form-horizontal offset3" controller="search">
