@@ -32,6 +32,17 @@
 					            </select>
 							</div>
 						</g:if>
+						<g:if test="${params.type}">
+							<div class="control-group">
+								<select class="header3" name="type" id="StudyType">
+						            <option value="" <g:if test="${params.type == ""}">selected="selected"</g:if>>All Studies &nbsp;</option>
+						            <option value="Intr" <g:if test="${params.type == "Intr"}">selected="selected"</g:if>>Interventional Studies &nbsp;</option>
+						            <option value="Obsr" <g:if test="${params.type == "Obsr"}">selected="selected"</g:if>>Observational Studies &nbsp;</option>
+						            <option value="PReg" <g:if test="${params.type == "PReg"}">selected="selected"</g:if>> &nbsp; -- Patient Registries &nbsp;</option>
+						            <option value="Expn" <g:if test="${params.type == "Expn"}">selected="selected"</g:if>>Expanded Access Studies &nbsp;</option>
+					            </select>
+							</div>
+						</g:if>
 						<div class="control-group">
 							<g:submitButton name="Search"/>
 						</div>

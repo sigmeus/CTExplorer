@@ -37,33 +37,52 @@
 						</div>
 					</div>
 					<div id="advanced" class="fade in tab-pane">
-						<g:form class="form-horizontal offset3" controller="search">
+						<g:form class="form-horizontal offset2" controller="search">
 							<div class="control-group">
-								<g:textField class="span6" name="term" placeholder="Keyword" />
+								<div class="controls">
+									<g:textField class="span6" name="term" placeholder="Keyword" />
+					            </div>
 							</div>
 							<div class="control-group">
-								<g:textField name="locn" placeholder="URC City"/>
+								<div class="controls">
+									<g:textField name="locn" placeholder="URC City"/>
+					            </div>
 							</div>
 							<div class="control-group">
-								<select class="header3" name="recr" id="Recruitment">
-						            <option value="" selected="selected">   All Studies &nbsp;</option>
-						            <option value="Open">  Open Studies &nbsp;</option>
-						            <option value="Recruiting"> &nbsp; --   Recruiting  &nbsp;</option>
-									<option value="Not yet recruiting"> &nbsp; --   Not yet recruiting  &nbsp;</option>
-									<option value="Available"> &nbsp; --  Expanded Access: Available  &nbsp;</option>
-						            <option value="Closed">  Closed Studies &nbsp;</option>
-						            <option value="Active, not recruiting"> &nbsp; --   Active, not recruiting  &nbsp;</option>
-						            <option value="Completed"> &nbsp; --   Completed  &nbsp;</option>
-						            <option value="Enrolling by invitation"> &nbsp; --   Enrolling by invitation  &nbsp;</option>
-						            <option value="Suspended"> &nbsp; --   Suspended  &nbsp;</option>
-						            <option value="Terminated"> &nbsp; --   Terminated  &nbsp;</option>
-						            <option value="Withdrawn"> &nbsp; --   Withdrawn  &nbsp;</option>
-						            <option value="No longer available"> &nbsp; --  Expanded Access: No longer available  &nbsp;</option>
-						            <option value="Temporarily not available"> &nbsp; --  Expanded Access: Temporarily not available  &nbsp;</option>
-					            </select>
+								<label class="control-label" for="Recruitment">Recruitment</label>
+								<div class="controls">
+									<select class="header3" name="recr" id="Recruitment">
+							            <option value="" selected="selected">   All Studies &nbsp;</option>
+							            <option value="Open">  Open Studies &nbsp;</option>
+							            <option value="Recruiting"> &nbsp; --   Recruiting  &nbsp;</option>
+										<option value="Not yet recruiting"> &nbsp; --   Not yet recruiting  &nbsp;</option>
+										<option value="Available"> &nbsp; --  Expanded Access: Available  &nbsp;</option>
+							            <option value="Closed">  Closed Studies &nbsp;</option>
+							            <option value="Active, not recruiting"> &nbsp; --   Active, not recruiting  &nbsp;</option>
+							            <option value="Completed"> &nbsp; --   Completed  &nbsp;</option>
+							            <option value="Enrolling by invitation"> &nbsp; --   Enrolling by invitation  &nbsp;</option>
+							            <option value="Suspended"> &nbsp; --   Suspended  &nbsp;</option>
+							            <option value="Terminated"> &nbsp; --   Terminated  &nbsp;</option>
+							            <option value="Withdrawn"> &nbsp; --   Withdrawn  &nbsp;</option>
+							            <option value="No longer available"> &nbsp; --  Expanded Access: No longer available  &nbsp;</option>
+							            <option value="Temporarily not available"> &nbsp; --  Expanded Access: Temporarily not available  &nbsp;</option>
+						            </select>
+					            </div>
 							</div>
 							<div class="control-group">
-								<g:submitButton name="Search"/>
+								<label class="control-label" for="StudyType">Study Type</label>
+								<div class="controls">
+									<select class="header3" name="type" id="StudyType">
+							            <option value="">All Studies &nbsp;</option>
+							            <option value="Intr">Interventional Studies &nbsp;</option>
+							            <option value="Obsr">Observational Studies &nbsp;</option>
+							            <option value="PReg"> &nbsp; -- Patient Registries &nbsp;</option>
+							            <option value="Expn">Expanded Access Studies &nbsp;</option>
+						            </select>
+					            </div>
+							</div>
+							<div class="control-group">
+								<g:submitButton name="Search" class="offset1"/>
 							</div>
 						</g:form>
 					</div>
