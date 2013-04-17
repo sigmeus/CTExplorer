@@ -60,9 +60,26 @@
 			           	 -->
 		           	</div>
 		           	<div class="tab-pane fade in" id="loc">
-				           	<g:each in="${xml.location}">
-				           		<span class="label ${it.status=='Recruiting'?'label-success':''}">${it.status}</span> <b>${it.facility.address.city}, ${it.facility.address.country}</b> - ${it.facility.name} ${it.contact}<br/>
-				           	</g:each>
+		           		
+	           			<div id="showMyLocationDiv" style="display:none;">
+		           			<span>My Location : <span id="showMyLocationSpan">${session.myLocation?.term}</span></span>
+		           			<g:actionSubmit value="Change" onclick="javascript:changeMyLocation();"></g:actionSubmit>
+	           			</div>
+	           			<div id="defineMyLocationDiv" style="display:none;">
+		           			<g:textField name="myLocation" id="myLocation" placeholder="My Location"/>
+	           				<g:actionSubmit value="Validate" onclick="javascript:defineMyLocation();"></g:actionSubmit>
+	           			</div>
+	           			
+	           			<div>&nbsp;</div>
+		           		
+			           	<g:each in="${xml.location}">
+			           		<span class="label ${it.status=='Recruiting'?'label-success':''}">${it.status}</span> <b>${it.facility.address.city}, ${it.facility.address.country}</b> - ${it.facility.name} ${it.contact}
+			           		<a href="javascript:void(0);" onclick="javascript:defineNearestCenterForLocation('${it.facility.address.city}, ${it.facility.address.country}');"
+			           				 style="display:none;" class="defineNearestCenterButton link_center_${(it.facility.address.city as String).replaceAll(" ", "")}_${(it.facility.address.country as String).replaceAll(" ", "")}">Define as nearest research center</a>
+	           				<span class="label label-success span_center_${(it.facility.address.city as String).replaceAll(" ", "")}_${(it.facility.address.country as String).replaceAll(" ", "")}"
+	           						style="display: none;"></span>
+	           				<br/>
+			           	</g:each>
 			        </div>
 			    </div>
 			    <div class="span6">
@@ -98,6 +115,46 @@
 	        </g:each>
 	        var mc=new MarkerClusterer(map,markers);
      	 });
+     	 
+     	 
+        $(document).ready(function() {
+        	if($("#showMyLocationSpan").html() != "") {
+	     	 	$("#showMyLocationDiv").show();
+	     	 	$(".defineNearestCenterButton").html("Define as nearest center from " + $("#showMyLocationSpan").html());
+	     	 	$(".defineNearestCenterButton").show();
+	     	 	$("#defineMyLocationDiv").hide();
+        	} else {
+        		$("#showMyLocationDiv").hide();
+	     	 	$(".defineNearestCenterButton").hide();
+     	 		$("#defineMyLocationDiv").show();
+        	}
+        });
+     	 
+     	 function defineMyLocation() {
+     	 	$.getJSON('../location/defineMyLocation', {loc: $("#myLocation").val()})
+     	 		.success(function(res) {
+     	 			$("#showMyLocationSpan").html(res.loc);
+		     	 	$("#showMyLocationDiv").show();
+		     	 	$(".defineNearestCenterButton").html("Define as nearest center from " + $("#showMyLocationSpan").html());
+		     	 	$(".defineNearestCenterButton").show();
+		     	 	$("#defineMyLocationDiv").hide();
+     	 		});
+     	 }
+     	 
+     	 function changeMyLocation() {
+     	 	$("#showMyLocationDiv").hide();
+     	 	$(".defineNearestCenterButton").hide();
+     	 	$("#defineMyLocationDiv").show();
+     	 }
+     	 
+     	 function defineNearestCenterForLocation(center) {
+     	 	$.post('../location/defineNearestCenterForLocation', {center: center, loc: $("#showMyLocationSpan").html()})
+     	 		.success(function(res) {
+     	 			//$(".span_center_" + res.center).html("Nearest center from " + res.loc);
+     	 			//$(".span_center_" + res.center).show();
+		     	 	//$(".link_center_" + res.center).hide();
+     	 		});
+     	 }
     </g:javascript>
     </body>
 </html>
